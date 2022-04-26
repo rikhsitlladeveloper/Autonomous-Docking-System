@@ -1,0 +1,5 @@
+#goal station
+string fiducial_id
+---
+#result
+string result

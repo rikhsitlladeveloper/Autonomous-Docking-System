@@ -1,0 +1,9 @@
+#goal
+string fiducial_id
+
+---
+#result
+string result 
+---
+#feedback
+string process

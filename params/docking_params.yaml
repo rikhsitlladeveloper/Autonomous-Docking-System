@@ -1,0 +1,7 @@
+angular_tolerance: 1
+linear_tolerance: 0.02
+tolerance_x_for_centering: 0.04
+pitch_tolerance: 0.8
+parking_stop_distance: 0.55
+check_1_point_stop_distance: 1
+safety_distance: 0.4

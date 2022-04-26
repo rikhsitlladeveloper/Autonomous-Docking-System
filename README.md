@@ -1,2 +1,3 @@
 # Autonomous-Docking-System
-Here is Autonomous Docking system for Autonomous Mobile Robot
+This is Docking package for differential wheeled robots with using of Aruco.
+Required packages: Aruco_detect

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- ******************* Parameters Setup************************-->    
+    <rosparam file="$(find my_docking)/params/docking_params.yaml" command="load" />
+
+    <!-- ************************ Scan Multi Merger **************************** -->
+  	<node pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger" output="screen" respawn="true">
+        <param name="destination_frame" value="laser"/>
+		<param name="cloud_destination_topic" value="/merged_cloud"/>
+		<param name="scan_destination_topic" value="/scan"/>
+		<param name="laserscan_topics" value ="/scan_1 /scan_2" /> <!-- LIST OF THE LASER SCAN TOPICS TO SUBSCRIBE -->
+		<param name="angle_min" value="-3.141592653589793"/>
+		<param name="angle_max" value="3.141592653589793"/>
+		<param name="angle_increment" value="0.0058"/>
+		<param name="scan_time" value="0.0333333"/>
+		<param name="range_min" value="0.40"/>
+		<param name="range_max" value="50.0"/>
+	</node>
+	 
+    <!-- ********************* ARUCO DETECT ************************* -->
+	<include file="$(find aruco_detect)/launch/aruco_detect.launch">
+        <arg name="camera" default="/zed2/zed_node/rgb"/>
+        <arg name="image" default="image_rect_color"/>
+        <arg name="transport" default="compressed"/>
+        <arg name="fiducial_len" default="0.07"/>
+
+    </include>
+    <!-- ************************ DOCKING  ******************** -->
+    <node name="Docking_servers" pkg="my_docking" type="Differential_docking_service.py" output="screen" respawn="true" />
+
+</launch>
